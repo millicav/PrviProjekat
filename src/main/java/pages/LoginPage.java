@@ -26,3 +26,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 }
+
+/* zadatak: koristiti nove metode umesto ovoga.
+umesto clicka svuda ubaciti driversCommands,
+umesto metoda iz testa, ubaciti ove nove...
+mozemo napraviti jos neke metode u DriverCommands
+npr: isElementPresent, scrollToElement, clickElement.JS,
+getText, mouseOver.JS... koriste JavaScriptExecutora */

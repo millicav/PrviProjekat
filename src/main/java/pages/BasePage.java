@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.wait.WaitUtil;
 
 public class BasePage {
 
@@ -16,11 +17,13 @@ public class BasePage {
     @FindBy(xpath = "//a[@class='logout']")
     private WebElement signOutLink;
 
+    protected WaitUtil waitUtil = new WaitUtil();
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        waitUtil.waitPageReady(driver); //ceka da se ucita .js do kraja
     }
 
     /**
