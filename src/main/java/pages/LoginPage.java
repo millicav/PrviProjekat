@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.wait.WaitUtil;
 
 public class LoginPage extends BasePage {
 
@@ -12,19 +13,38 @@ public class LoginPage extends BasePage {
     @FindBy(id = "passwd")
     private WebElement passwordInput;
 
+    @FindBy(id = "SubmitLogin")
+    private WebElement signInButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public LoginPage typeEmail(String email) {
-        emailInput.sendKeys(email);
+        //waitUtil.waitForElementToBeVisible(driver, emailInput);
+        //emailInput.sendKeys(email);
+        driverCommands.waitAndType(driver, emailInput, email);
         return this;
     }
 
     public LoginPage typePassword(String passwd) {
-        passwordInput.sendKeys(passwd);
+        //waitUtil.waitForElementToBeVisible(driver, passwordInput);
+        //passwordInput.sendKeys(passwd);
+        driverCommands.waitAndType(driver, passwordInput, passwd);
         return this;
     }
+
+    /**
+     * Click log in button
+     * @return User's HomePage
+     */
+    public MyAccount clickSignInButton() {
+        //waitUtil.waitForElementToBeVisible(driver, signInButton);
+        //signInButton.click();
+        driverCommands.clickElement(driver, signInButton);
+        return new MyAccount(driver);
+    }
+
 }
 
 /* zadatak: koristiti nove metode umesto ovoga.

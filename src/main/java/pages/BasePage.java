@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.DriverCommands;
 import utils.wait.WaitUtil;
 
 public class BasePage {
@@ -11,13 +12,11 @@ public class BasePage {
     @FindBy(xpath = "//a[@class='login']")
     private WebElement signInLink;
 
-    @FindBy(id = "SubmitLogin")
-    private WebElement signInButton;
-
     @FindBy(xpath = "//a[@class='logout']")
     private WebElement signOutLink;
 
     protected WaitUtil waitUtil = new WaitUtil();
+    protected DriverCommands driverCommands = new DriverCommands();
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
@@ -31,17 +30,10 @@ public class BasePage {
      * @return LoginPage
      */
     public LoginPage clickSignInLink() {
-        signInLink.click();
+        //waitUtil.waitForElementToBeVisible(driver, signInLink);
+        //signInLink.click();
+        driverCommands.clickElement(driver, signInLink);
         return new LoginPage(driver);
-    }
-
-    /**
-     * Click log in button
-     * @return User's HomePage
-     */
-    public HomePage clickSignInButton() {
-        signInButton.click();
-        return new HomePage(driver);
     }
 
     /**
@@ -49,7 +41,8 @@ public class BasePage {
      * @return HomePage
      */
     public HomePage clickSignOutLink() {
-        signOutLink.click();
+        driverCommands.clickElement(driver,signOutLink);
+        //signOutLink.click();
         return new HomePage(driver);
     }
 
@@ -58,6 +51,7 @@ public class BasePage {
      * @return WebElement
      */
     public WebElement getSignOutLink() {
+        waitUtil.waitForElementToBeVisible(driver, signOutLink);
         return signOutLink;
     }
 }

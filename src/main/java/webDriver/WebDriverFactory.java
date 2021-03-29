@@ -21,6 +21,7 @@ public class WebDriverFactory {
 
         driver = new ChromeDriver(options);
         driver.manage().deleteAllCookies();
+        driver.get("http://automationpractice.com/index.php");
 
         return driver;
     }

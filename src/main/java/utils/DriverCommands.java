@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utils.wait.WaitUtil;
 
 public class DriverCommands {
@@ -33,5 +34,30 @@ public class DriverCommands {
         waitUtil.waitForElementToBeVisible(driver, element);
         type(element, text);
         sleeper.sleepForMilliseconds(TimeoutLevel.MS_SHORTEST.value());
+    }
+
+    public boolean isElementPresent(WebDriver driver, WebElement element) {
+        return false;
+    }
+
+    public void scrollToElement(WebDriver driver, WebElement element) {
+
+    }
+
+    /** click element.js **/
+
+    public String getText(WebDriver driver, WebElement element) {
+        log.debug("getText()");
+        waitUtil.waitForElementToBeVisible(driver, element);
+        String text = element.getText();
+        sleeper.sleepForSeconds(TimeoutLevel.SHORTER.value());
+        return text;
+    }
+
+    public void mouseOver(WebDriver driver, WebElement element) {
+        log.debug("mouseOver()");
+        waitUtil.waitForElementToBeVisible(driver, element);
+        Actions builder = new Actions(driver);
+        builder.moveToElement(element).build().perform();
     }
 }

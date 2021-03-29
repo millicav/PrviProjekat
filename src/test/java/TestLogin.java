@@ -3,6 +3,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MyAccount;
+import webDriver.WebDriverFactory;
 
 public class TestLogin {
 
@@ -15,19 +17,21 @@ public class TestLogin {
 
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/driver/chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://automationpractice.com/index.php");
+        //WebDriver driver = new ChromeDriver();
+        //driver.get("http://automationpractice.com/index.php");
+        //driver.manage().window().maximize();
+        WebDriver driver = WebDriverFactory.getDriver();
 
         try {
             HomePage homePage = new HomePage(driver);
             LoginPage loginPage = homePage.clickSignInLink();
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
             loginPage.typeEmail(email).typePassword(psswd);
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
-            HomePage userHomePage = loginPage.clickSignInButton();
-            Thread.sleep(3000);
+            MyAccount userHomePage = loginPage.clickSignInButton();
+            //Thread.sleep(3000);
 
             //HOMEWORK: We check if there is a Sign Out link in the Navigation bar
             //if the user is successfully signed in, that button is certainly exists
