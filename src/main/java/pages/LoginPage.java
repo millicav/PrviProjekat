@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.wait.WaitUtil;
 
 public class LoginPage extends BasePage {
 
@@ -38,11 +37,11 @@ public class LoginPage extends BasePage {
      * Click log in button
      * @return User's HomePage
      */
-    public MyAccount clickSignInButton() {
+    public MyAccountPage clickSignInButton() {
         //waitUtil.waitForElementToBeVisible(driver, signInButton);
         //signInButton.click();
         driverCommands.clickElement(driver, signInButton);
-        return new MyAccount(driver);
+        return new MyAccountPage(driver);
     }
 
 }

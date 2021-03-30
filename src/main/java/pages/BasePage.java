@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.DriverCommands;
+import utils.Logger;
 import utils.wait.WaitUtil;
 
 public class BasePage {
@@ -18,6 +19,7 @@ public class BasePage {
     protected WaitUtil waitUtil = new WaitUtil();
     protected DriverCommands driverCommands = new DriverCommands();
     protected WebDriver driver;
+    protected Logger log = new Logger();
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

@@ -1,9 +1,8 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.MyAccount;
+import pages.MyAccountPage;
 import webDriver.WebDriverFactory;
 
 public class TestLogin {
@@ -27,18 +26,17 @@ public class TestLogin {
             LoginPage loginPage = homePage.clickSignInLink();
             //Thread.sleep(3000);
 
-            loginPage.typeEmail(email).typePassword(psswd);
+            loginPage.typeEmail(email)
+                    .typePassword(psswd);
             //Thread.sleep(3000);
 
-            MyAccount userHomePage = loginPage.clickSignInButton();
+            MyAccountPage userHomePage = loginPage.clickSignInButton();
             //Thread.sleep(3000);
 
             //HOMEWORK: We check if there is a Sign Out link in the Navigation bar
             //if the user is successfully signed in, that button is certainly exists
             String actualSignOut = userHomePage.getSignOutLink().getText();
             assert actualSignOut.equals(expectedSignOut) : "Expected text is [" + expectedSignOut + "], but actual is [" + actualSignOut + "].";
-        } catch (Exception e) {
-            System.out.println("Error is: " + e);
         } finally {
             driver.quit();
         }
