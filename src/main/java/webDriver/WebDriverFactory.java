@@ -11,7 +11,6 @@ public class WebDriverFactory {
     public static WebDriver getDriver() {
         ChromeOptions options = new ChromeOptions();
         WebDriver driver;
-        //WebDriver driver = new ChromeDriver(options);
         WebDriverManager.chromedriver().setup();
 
         options.addArguments("--no-sandbox");

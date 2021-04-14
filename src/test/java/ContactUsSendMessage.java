@@ -13,6 +13,9 @@ public class ContactUsSendMessage {
 
         String email = "milicica@gmail.com";
         String psswd = "mica123";
+        String subjectHeading = "1";
+        String message = "This is message";
+        String expectedConfirmationMessage = "Your message has been successfully sent to our team.";
 
         WebDriver driver = WebDriverFactory.getDriver();
 
@@ -27,8 +30,12 @@ public class ContactUsSendMessage {
 
             ContactUsPage contactUsPage = userHomePage.clickContactUs();
 
-            contactUsPage.selectSubjectHeading();
+            contactUsPage.selectSubjectHeading(subjectHeading)
+                    .writeAMessage(message)
+                    .submitForm();
 
+            String actualConfirmationMessage = contactUsPage.getSuccessMessageText();
+            assert actualConfirmationMessage.equals(expectedConfirmationMessage):"Expected is [" + expectedConfirmationMessage + "], but actual is [" + actualConfirmationMessage + "].";
         } finally {
             //driver.quit();
         }

@@ -19,6 +19,10 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    /**
+     * Type e-mail
+     * @return LoginPage
+     */
     public LoginPage typeEmail(String email) {
         //waitUtil.waitForElementToBeVisible(driver, emailInput);
         //emailInput.sendKeys(email);
@@ -26,6 +30,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    /**
+     * Type password
+     * @return LoginPage
+     */
     public LoginPage typePassword(String passwd) {
         //waitUtil.waitForElementToBeVisible(driver, passwordInput);
         //passwordInput.sendKeys(passwd);
@@ -34,8 +42,8 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * Click log in button
-     * @return User's HomePage
+     * Click Login(Signin) button
+     * @return MyAccountPage
      */
     public MyAccountPage clickSignInButton() {
         //waitUtil.waitForElementToBeVisible(driver, signInButton);

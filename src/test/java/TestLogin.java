@@ -24,17 +24,14 @@ public class TestLogin {
         try {
             HomePage homePage = new HomePage(driver);
             LoginPage loginPage = homePage.clickSignInLink();
-            //Thread.sleep(3000);
 
             loginPage.typeEmail(email)
                     .typePassword(psswd);
-            //Thread.sleep(3000);
 
             MyAccountPage userHomePage = loginPage.clickSignInButton();
-            //Thread.sleep(3000);
 
-            //HOMEWORK: We check if there is a Sign Out link in the Navigation bar
-            //if the user is successfully signed in, that button is certainly exists
+            /*HOMEWORK: We check if there is a Sign Out link in the Navigation bar
+            if the user is successfully signed in, that button is certainly exists*/
             String actualSignOut = userHomePage.getSignOutLink().getText();
             assert actualSignOut.equals(expectedSignOut) : "Expected text is [" + expectedSignOut + "], but actual is [" + actualSignOut + "].";
         } finally {

@@ -16,6 +16,12 @@ public class BasePage {
     @FindBy(xpath = "//a[@class='logout']")
     private WebElement signOutLink;
 
+    @FindBy(xpath = "//img[@class='logo img-responsive']")
+    private WebElement yourLogoImage;
+
+    @FindBy(xpath = "//a[@title='Contact Us']")
+    private WebElement contactUsLink;
+
     protected WaitUtil waitUtil = new WaitUtil();
     protected DriverCommands driverCommands = new DriverCommands();
     protected WebDriver driver;
@@ -55,5 +61,26 @@ public class BasePage {
     public WebElement getSignOutLink() {
         waitUtil.waitForElementToBeVisible(driver, signOutLink);
         return signOutLink;
+    }
+
+    /**
+     * Click on Your Logo Image
+     * @return HomePage
+     */
+    public HomePage clickYourLogo() {
+        log.debug("clickYourLogo()");
+        driverCommands.clickElement(driver, yourLogoImage);
+        return new HomePage(driver);
+    }
+
+    /**
+     * Click ContactUs button
+     * @return ContactUsPage
+     */
+    public ContactUsPage clickContactUs() {
+        log.debug("clickContactUs()");
+        driverCommands.clickElement(driver, contactUsLink);
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        return contactUsPage;
     }
 }
