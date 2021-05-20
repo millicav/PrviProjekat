@@ -9,11 +9,17 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "(//img[@title = 'Blouse'])[1]")
     private WebElement firstBlouse;
 
-    @FindBy(xpath = "//*[@id=\"homefeatured\"]/li[2]/div/div[1]/div/a[2]")
+    @FindBy(xpath = "//a[@class='quick-view'][contains(@href, 'product=2')]")
     private WebElement quickViewButton;
 
-    @FindBy(xpath = "//button[@name=\"Submit\"]")
+    @FindBy(xpath = "//button[@type='submit'][@name='Submit']")
     private WebElement addToCartButton;
+
+    @FindBy(xpath = "//a[@data-id-product='2']")
+    private WebElement addToCartFromHomePage;
+
+    @FindBy(xpath = "//a[@title='Proceed to checkout']")
+    private WebElement proceedToCheckoutButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -25,11 +31,33 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    public HomePage clickQuickViewButton() {
+        log.debug("clickQuickViewButton()");
+        driverCommands.clickElementJS(driver, quickViewButton);
+        return this;
+    }
+
     public HomePage clickAddToCart() {
         log.debug("clickAddToCart()");
-        driverCommands.clickElement(driver, quickViewButton);
-        //driverCommands.getSleeper().sleepForSeconds(5);
-        //addToCartButton.click();
+        driverCommands.clickElement(driver, addToCartButton);
         return this;
+    }
+
+    public HomePage clickAddToCartHomePage() {
+        log.debug("clickAddToCartHomePage()");
+        driverCommands.clickElementJS(driver, addToCartFromHomePage);
+        return this;
+    }
+
+    public ProductPage clickOnTheFirstBlouse() {
+        log.debug("clickOnTheFirstBlouse()");
+        driverCommands.clickElementJS(driver, firstBlouse);
+        return new ProductPage(driver);
+    }
+
+    public CheckoutPage clickOnTheProceedToCheckOut() {
+        log.debug("clickOnTheProceedToCheckOut()");
+        driverCommands.clickElement(driver, proceedToCheckoutButton);
+        return new CheckoutPage(driver);
     }
 }
